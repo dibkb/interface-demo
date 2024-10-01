@@ -30,6 +30,12 @@ const Loglabel = ({ type }: LoglabelProps) => {
           Case Raised
         </span>
       );
+    case "action":
+      return (
+        <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#CC0F0F] border border-[#CC0F0F] bg-[#FBCFCF]">
+          Action Required
+        </span>
+      );
   }
 };
 

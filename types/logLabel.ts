@@ -1,1 +1,1 @@
-export type label = "all" | "raised" | "followed" | "reimbursed";
+export type label = "all" | "raised" | "followed" | "reimbursed" | "action";
