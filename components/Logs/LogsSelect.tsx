@@ -8,14 +8,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { logMessages, logMessagesDisplay } from "@/constants/log-messages";
-import { useParams, useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
 
 export function LogsSelect() {
   const router = useRouter();
   const [type, setType] = useState<string>("");
   const handleValueChange = useCallback(
     (key: string) => {
+      setType(key);
       router.push(
         `/home/amazon/logs/${logMessages[key as keyof typeof logMessages]}`
       );
@@ -23,12 +24,14 @@ export function LogsSelect() {
     [router]
   );
 
-  const params = useParams();
-  useEffect(() => {
-    if (params?.type === undefined) {
-      setType(params.type);
-    }
-  }, [params]);
+  //   const params = useParams();
+  //   useEffect(() => {
+  //     console.log(typeof params?.type);
+  //     console.log(params?.type);
+  //     if (typeof params?.type === "string" && params?.type.length) {
+  //       setType(params.type);
+  //     }
+  //   }, [params]);
 
   return (
     <Select onValueChange={handleValueChange} value={type}>
