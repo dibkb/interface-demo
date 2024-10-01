@@ -1,40 +1,57 @@
 import { label } from "@/types/logLabel";
+import Link from "next/link";
 import React from "react";
 
 interface LoglabelProps {
   type: label;
+  href: string;
 }
-const Loglabel = ({ type }: LoglabelProps) => {
+const Loglabel = ({ type, href }: LoglabelProps) => {
   switch (type) {
     case "all":
       return (
-        <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#F36325] border border-[#F36325] bg-[#FBDCCF]">
+        <Link
+          href={`logs/${href}`}
+          className="text-sm font-semibold px-4 py-1 rounded-md text-[#F36325] border border-[#F36325] bg-[#FBDCCF]"
+        >
           All Mismatches
-        </span>
+        </Link>
       );
     case "followed":
       return (
-        <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#0DB580] border border-[#0DB580] bg-[#C8F8E9]">
+        <Link
+          href={`logs/${href}`}
+          className="text-sm font-semibold px-4 py-1 rounded-md text-[#0DB580] border border-[#0DB580] bg-[#C8F8E9]"
+        >
           Followed Up
-        </span>
+        </Link>
       );
     case "raised":
       return (
-        <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#CCA60F] border border-[#CCA60F] bg-[#FBF6CF]">
+        <Link
+          href={`logs/${href}`}
+          className="text-sm font-semibold px-4 py-1 rounded-md text-[#CCA60F] border border-[#CCA60F] bg-[#FBF6CF]"
+        >
           Case Raised
-        </span>
+        </Link>
       );
     case "reimbursed":
       return (
-        <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#14A341] border border-[#14A341] bg-[#CBEDD6]">
+        <Link
+          href={`logs/${href}`}
+          className="text-sm font-semibold px-4 py-1 rounded-md text-[#14A341] border border-[#14A341] bg-[#CBEDD6]"
+        >
           Reimbursed
-        </span>
+        </Link>
       );
     case "action":
       return (
-        <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#CC0F0F] border border-[#CC0F0F] bg-[#FBCFCF]">
+        <Link
+          href={`logs/${href}`}
+          className="text-sm font-semibold px-4 py-1 rounded-md text-[#CC0F0F] border border-[#CC0F0F] bg-[#FBCFCF]"
+        >
           Action Required
-        </span>
+        </Link>
       );
   }
 };
