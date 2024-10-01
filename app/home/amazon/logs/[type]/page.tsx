@@ -1,5 +1,7 @@
+import ArrowClockwise from "@/components/icons/ArrowClockwise";
 import ChevronDown from "@/components/icons/ChevronDown";
 import ChevronUp from "@/components/icons/ChevronUp";
+import Pause from "@/components/icons/Pause";
 import Xicon from "@/components/icons/Xicon";
 import {
   Table,
@@ -91,7 +93,15 @@ export default function Page({ params }: { params: { type: string } }) {
             <Xicon />
           </button>
         </main>
-        <div className="border-t w-full"></div>
+        <div className="border-t w-full flex-1"></div>
+        <footer className="flex items-center justify-between p-4">
+          <button className="p-1 hover:bg-interface-neutrals-50">
+            <ArrowClockwise />
+          </button>
+          <button className="p-1 hover:bg-interface-neutrals-50">
+            <Pause />
+          </button>
+        </footer>
       </div>
     </main>
   );
