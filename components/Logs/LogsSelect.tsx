@@ -9,15 +9,20 @@ import {
 } from "@/components/ui/select";
 import { logMessages, logMessagesDisplay } from "@/constants/log-messages";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 
 export function LogsSelect() {
   const router = useRouter();
 
-  const handleValueChange = (key: string) => {
-    router.push(
-      `/home/amazon/logs/${logMessages[key as keyof typeof logMessages]}`
-    );
-  };
+  const handleValueChange = useCallback(
+    (key: string) => {
+      router.push(
+        `/home/amazon/logs/${logMessages[key as keyof typeof logMessages]}`
+      );
+    },
+    [router]
+  );
+
   return (
     <Select onValueChange={handleValueChange}>
       <SelectTrigger className="w-[150px] border-none bg-transparent shadow-none font-bold text-interface-base-black">
