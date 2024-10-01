@@ -21,7 +21,7 @@ export default function Home() {
         </div>
       </aside>
 
-      <main className="w-5/6 flex flex-col">
+      <main className="w-5/6 flex flex-col overflow-x-auto">
         <div className="h-[4.25rem] border-t border-b py-5 px-8 flex items-center justify-between">
           <Heading text="Logs" />
           <div className="flex items-center gap-4">
@@ -38,7 +38,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-6 overflow-x-auto">
           <Mainpage />
         </div>
       </main>

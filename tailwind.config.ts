@@ -83,6 +83,7 @@ const config: Config = {
           1000: "#154825",
         },
         "interface-neutrals": {
+          50: "#F6F6F6",
           100: "#e6e6e6",
           200: "#d2d2d2",
           300: "#bdbdbd",
