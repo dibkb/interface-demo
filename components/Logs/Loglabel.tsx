@@ -27,7 +27,7 @@ const Loglabel = ({ type }: LoglabelProps) => {
     case "reimbursed":
       return (
         <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#14A341] border border-[#14A341] bg-[#CBEDD6]">
-          Case Raised
+          Reimbursed
         </span>
       );
     case "action":
