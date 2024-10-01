@@ -6,21 +6,22 @@ import Sidebar from "@/components/Logs/Sidebar";
 import { cn } from "@/lib/utils";
 import { inter } from "@/components/fonts";
 import SidebarbottomMenu from "@/components/Logs/SidebarbottomMenu";
+import Mainpage from "@/components/Logs/Mainpage";
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-12 grid-rows-[auto_1fr] min-h-screen">
-      <aside className="col-span-2 row-span-2 grid grid-rows-[auto_1fr]">
+    <div className="fixed inset-0 flex">
+      <aside className="w-1/6 flex flex-col h-full">
         <div className="h-[4.25rem] border-t border-r border-b px-8">
           <Logo />
         </div>
-        <div className="border-r flex flex-col">
+        <div className="border-r flex-1 flex flex-col justify-between overflow-hidden">
           <Sidebar />
           <SidebarbottomMenu />
         </div>
       </aside>
 
-      <main className="col-span-10 row-span-2 grid grid-rows-[auto_1fr]">
+      <main className="w-5/6 flex flex-col">
         <div className="h-[4.25rem] border-t border-b py-5 px-8 flex items-center justify-between">
           <Heading text="Logs" />
           <div className="flex items-center gap-4">
@@ -37,8 +38,8 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="p-6 overflow-y-auto h-full">
-          Main Row 2 (Full height)
+        <div className="flex-1 overflow-y-auto p-6">
+          <Mainpage />
         </div>
       </main>
     </div>
