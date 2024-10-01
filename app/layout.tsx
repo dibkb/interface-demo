@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
 
 import "./globals.css";
-
-const primary = Outfit({
-  subsets: ["latin"],
-});
+import { manrope } from "@/components/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${primary.className} antialiased`}>{children}</body>
+      <body className={`${manrope.className} antialiased`}>{children}</body>
     </html>
   );
 }
