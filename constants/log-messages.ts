@@ -8,7 +8,7 @@ export const logMessages: Record<label, string> = {
   action: "action-required",
 };
 export const logMessagesDisplay: Record<label, string> = {
-  all: "All mismatches",
+  all: "All Mismatches",
   raised: "Case Raised",
   followed: "Followed Up",
   reimbursed: "Reimbursed",
