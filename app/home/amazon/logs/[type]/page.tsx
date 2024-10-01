@@ -68,7 +68,9 @@ export default function Page({ params }: { params: { type: string } }) {
   };
   return (
     <main className="flex border w-full h-full">
-      <div className="w-8/12 border-r overflow-x-auto">
+      <div
+        className={`${selected ? "w-8/12" : "w-full"} border-r overflow-x-auto`}
+      >
         <Table>
           <TableHeader>
             <TableRow className="h-12">
@@ -97,12 +99,18 @@ export default function Page({ params }: { params: { type: string } }) {
               >
                 <TableCell
                   className="w-1/12 py-4"
-                  onClick={() => setSelected(data.asin)}
+                  onClick={() =>
+                    setSelected((prev) => {
+                      if (prev === data.asin) return undefined;
+                      else return data.asin;
+                    })
+                  }
                 >
                   <div
                     className={cn(
                       "w-4 h-4 border rounded-sm flex items-center justify-center bg-transparent",
-                      selected === data.asin && " bg-interface-base-black"
+                      selected === data.asin &&
+                        " bg-interface-base-black border-interface-base-black"
                     )}
                   >
                     <Check
@@ -121,43 +129,48 @@ export default function Page({ params }: { params: { type: string } }) {
           </TableBody>
         </Table>
       </div>
-      <div className="w-4/12 flex flex-col">
-        <main className="h-12 w-full flex items-center justify-between px-4">
-          <section>
+      {selected && (
+        <div className="w-4/12 flex flex-col">
+          <main className="h-12 w-full flex items-center justify-between px-4">
+            <section>
+              <button
+                onClick={decrementSelection}
+                className="p-1 rounded-md text-interface-neutrals-600 hover:bg-interface-neutrals-50"
+              >
+                <ChevronUp />
+              </button>
+              <button
+                onClick={incrementSelection}
+                className="p-1 rounded-md text-interface-neutrals-600 hover:bg-interface-neutrals-50"
+              >
+                <ChevronDown />
+              </button>
+            </section>
+            {selected ? (
+              <p className="text-interface-neutrals-700 text-sm font-semibold">
+                #{selected}
+              </p>
+            ) : (
+              ""
+            )}
             <button
-              onClick={decrementSelection}
+              onClick={() => setSelected(undefined)}
               className="p-1 rounded-md text-interface-neutrals-600 hover:bg-interface-neutrals-50"
             >
-              <ChevronUp />
+              <Xicon />
             </button>
-            <button
-              onClick={incrementSelection}
-              className="p-1 rounded-md text-interface-neutrals-600 hover:bg-interface-neutrals-50"
-            >
-              <ChevronDown />
+          </main>
+          <div className="border-t w-full flex-1"></div>
+          <footer className="flex items-center justify-between p-4">
+            <button className="p-1 hover:bg-interface-neutrals-50">
+              <ArrowClockwise />
             </button>
-          </section>
-          {selected ? (
-            <p className="text-interface-neutrals-700 text-sm font-semibold">
-              #{selected}
-            </p>
-          ) : (
-            ""
-          )}
-          <button className="p-1 rounded-md text-interface-neutrals-600 hover:bg-interface-neutrals-50">
-            <Xicon />
-          </button>
-        </main>
-        <div className="border-t w-full flex-1"></div>
-        <footer className="flex items-center justify-between p-4">
-          <button className="p-1 hover:bg-interface-neutrals-50">
-            <ArrowClockwise />
-          </button>
-          <button className="p-1 hover:bg-interface-neutrals-50">
-            <Pause />
-          </button>
-        </footer>
-      </div>
+            <button className="p-1 hover:bg-interface-neutrals-50">
+              <Pause />
+            </button>
+          </footer>
+        </div>
+      )}
     </main>
   );
 }
