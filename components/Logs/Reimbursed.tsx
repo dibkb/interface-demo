@@ -12,44 +12,39 @@ import { cn } from "@/lib/utils";
 import { Check, ChevronUp, ChevronDown, Pause } from "lucide-react";
 import ArrowClockwise from "../icons/ArrowClockwise";
 import Xicon from "../icons/Xicon";
+import ReimbursedSidemenu from "./Sidemenu/ReimbursedSidemenu";
+import ReimbursedLabel from "./Sidemenu/ReimbursedItems/ReimbursedLabel";
 const invoices = [
   {
-    time: "2024-09-21T23:11:09",
+    caseId: "10175687215",
     asin: "B0CLMN2PQ7",
-    dispute: "Overcharge : Shipping",
+    status: "Reimbursed",
   },
   {
-    time: "2024-09-21T23:11:09",
+    caseId: "10175681215",
     asin: "B0BLMN3PQ7",
-    dispute: "Overcharge : Shipping",
+    status: "Reimbursed",
   },
   {
-    time: "2024-09-21T23:11:09",
+    caseId: "20175687215",
     asin: "X0CLMN3PQ7",
-    dispute: "Overcharge : Shipping",
+    status: "Partially reimbursed",
   },
   {
-    time: "2024-09-21T23:11:09",
+    caseId: "10275687215",
     asin: "P0CLMN3PQ7",
-    dispute: "Overcharge : Shipping",
+    status: "Reimbursed",
   },
   {
-    time: "2024-09-21T23:11:09",
+    caseId: "10175687212",
     asin: "B0CLMN3PW7",
-    dispute: "Overcharge : Shipping",
+    status: "Partially reimbursed",
   },
   {
-    time: "2024-09-21T23:11:09",
-    asin: "B0CLMN2NQ7",
-    dispute: "Overcharge : Shipping",
+    caseId: "2024-09-21T23:11:09",
+    asin: "10175187215",
+    status: "Reimbursed",
   },
-];
-const checkedData = [
-  "Navigating to Amazon Seller Central",
-  "Retrieving Order Details",
-  "Raising a ticket on Amazon Seller Central",
-  "Setting a timer to follow up with Seller Support",
-  "Sending confirmation Mail",
 ];
 const Reimbursed = () => {
   const [selected, setSelected] = useState<string | undefined>();
@@ -81,20 +76,20 @@ const Reimbursed = () => {
                 <div className="w-4 h-4 border rounded-sm invisible"></div>
               </TableHead>
               <TableHead className="font-bold text-interface-base-black w-3/12">
-                Date/Time
+                Case ID
               </TableHead>
               <TableHead className="font-bold text-interface-base-black w-3/12">
                 ASIN
               </TableHead>
               <TableHead className="font-bold text-interface-base-black w-5/12">
-                Dispute Type
+                Status
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {invoices.map((data) => (
               <TableRow
-                key={data.time}
+                key={data.caseId}
                 className={cn(
                   "font-semibold text-[#1F2937] hover:bg-interface-neutrals-200",
                   data.asin === selected && "bg-interface-neutrals-200"
@@ -124,17 +119,20 @@ const Reimbursed = () => {
                     />
                   </div>
                 </TableCell>
-                <TableCell className="w-3/12 py-4">{data.time}</TableCell>
+                <TableCell className="w-3/12 py-4">{data.caseId}</TableCell>
                 <TableCell className="w-3/12 py-4">{data.asin}</TableCell>
-                <TableCell className="w-5/12 py-4">{data.dispute}</TableCell>
+                <TableCell className="w-5/12 py-4">
+                  <ReimbursedLabel>{data.status}</ReimbursedLabel>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </div>
+
       {selected && (
-        <div className="w-4/12 flex flex-col">
-          <main className="h-12 w-full flex items-center justify-between px-4">
+        <div className="w-4/12 flex flex-col overflow-scroll">
+          <main className="min-h-[48px] w-full flex items-center justify-between px-4">
             <section>
               <button
                 onClick={decrementSelection}
@@ -164,7 +162,7 @@ const Reimbursed = () => {
             </button>
           </main>
           <div className="border-t w-full flex-1 p-4 text-xs font-semibold">
-            <main className="flex flex-col gap-3"></main>
+            <ReimbursedSidemenu />
           </div>
           <footer className="flex items-center justify-between p-4">
             <button className="p-1 hover:bg-interface-neutrals-50">
