@@ -1,6 +1,7 @@
+import { SVGProps } from "@/types/svg";
 import React from "react";
 
-const ChevronRight = () => {
+const ChevronRight = (props: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -9,6 +10,7 @@ const ChevronRight = () => {
       strokeWidth={1.5}
       stroke="currentColor"
       className="size-6"
+      {...props}
     >
       <path
         strokeLinecap="round"

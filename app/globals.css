@@ -67,3 +67,8 @@
     color: var(--interface-base-black);
   }
 }
+
+.linear-grad {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.24) 100%), linear-gradient(0deg, var(--black-20, rgba(0, 0, 0, 0.20)) 0%, var(--black-20, rgba(0, 0, 0, 0.20)) 100%), var(--black-100, #000);
+  background-blend-mode: normal, overlay, multiply;
+}
