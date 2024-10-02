@@ -9,21 +9,22 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import ArrowUp from "@/components/icons/ArrowUp";
+
 const chartData = [
-  { browser: "flipkart", cases: 16038, fill: "#000000" },
-  { browser: "amazon", cases: 37817, fill: "#0A5823" },
-  { browser: "zepto", cases: 8382, fill: "#3EC76A" },
+  { platform: "flipkart", cases: 16038, fill: "#000000" },
+  { platform: "amazon", cases: 37817, fill: "#0A5823" },
+  { platform: "zepto", cases: 8382, fill: "#3EC76A" },
 ];
 const chartConfig = {
-  chrome: {
+  flipkart: {
     label: "flipkart",
     color: "#000000",
   },
-  safari: {
+  amazon: {
     label: "amazon",
     color: "#0A5823",
   },
-  firefox: {
+  zepto: {
     label: "zepto",
     color: "#3EC76A",
   },
@@ -36,15 +37,37 @@ const RadialChart = () => {
           <span className="font-bold flex flex-col gap-3">
             <p className="text-interface-neutrals-400">Total</p>
             <h2 className="text-interface-base-black text-4xl">62,237</h2>
-            <p className="flex items-center gap-1 text-interface-primary-800">
+            <span className="flex items-center gap-1 text-interface-primary-800">
               {" "}
               <ArrowUp className="size-3" />
               32.1%
-            </p>
+            </span>
           </span>
-          {/* Legend */}
-          <main></main>
+          <div className="flex flex-col gap-3 text-sm font-semibold text-interface-neutrals-500 mt-6">
+            {chartData.map((ele) => {
+              return (
+                <div
+                  key={ele.cases}
+                  className="flex items-center justify-between"
+                >
+                  <span className="flex items-center gap-2">
+                    <span
+                      className="rounded-md"
+                      style={{
+                        width: "8px",
+                        height: "16px",
+                        backgroundColor: ele.fill,
+                      }}
+                    ></span>
+                    <p className="capitalize">{ele.platform}</p>
+                  </span>
+                  <h3 className="text-interface-base-black">{ele.cases}</h3>
+                </div>
+              );
+            })}
+          </div>
         </div>
+
         <div className="p-0 my-2">
           <ChartContainer
             config={chartConfig}
