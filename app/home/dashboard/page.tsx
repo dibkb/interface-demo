@@ -1,4 +1,5 @@
 import ButtonInfo from "@/components/dashboard/ButtonInfo";
+import RadialChart from "@/components/dashboard/graphs/RadialChart";
 import React from "react";
 
 const DashboardPage = () => {
@@ -8,6 +9,10 @@ const DashboardPage = () => {
         <ButtonInfo title={"Total Reimbursements"} amount={"23,43,521.97"} />
         <ButtonInfo title={"Cases Raised"} amount={"62,237"} />
       </div>
+      <section className="mt-4 flex justify-between gap-4">
+        <RadialChart />
+        <RadialChart />
+      </section>
     </div>
   );
 };
