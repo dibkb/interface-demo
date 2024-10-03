@@ -1,4 +1,5 @@
 import ButtonInfo from "@/components/dashboard/ButtonInfo";
+import CaseLogs from "@/components/dashboard/graphs/CaseLogs";
 import { ReimbursementsFull } from "@/components/dashboard/graphs/ReimbursementsFull";
 
 function AmazonDashboard() {
@@ -8,7 +9,10 @@ function AmazonDashboard() {
         <ButtonInfo title={"Total Reimbursements"} amount={"₹11,34,234.82"} />
         <ButtonInfo title={"Cases Raised"} amount={"37,817"} />
       </div>
-      <section className="mt-4 grid grid-cols-12">
+      <section className="mt-4 grid grid-cols-12 gap-y-4">
+        <main className="col-span-12">
+          <CaseLogs />
+        </main>
         <main className="col-span-12">
           <ReimbursementsFull />
         </main>
