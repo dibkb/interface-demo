@@ -1,21 +1,14 @@
 import React from "react";
 import CardLayout from "./CardLayout";
-import { inter } from "../fonts";
-import { cn } from "@/lib/utils";
+
+import SmallButton from "./SmallButton";
 
 const BillingCard = () => {
-  const button = (
-    <button
-      className={cn(
-        inter.className,
-        "text-xs px-6 py-1 rounded-md bg-interface-base-black text-interface-base-white"
-      )}
-    >
-      Edit
-    </button>
-  );
   return (
-    <CardLayout text="Billing Address" asideNode={button}>
+    <CardLayout
+      text="Billing Address"
+      asideNode={<SmallButton text={"Edit"} />}
+    >
       <section className="flex">
         <div className="flex flex-col gap-6 min-w-80 bg-interface-base-white px-6 py-4 border rounded-md">
           <div className="flex items-center justify-between">

@@ -1,6 +1,8 @@
 "use client";
 import { BillingAddress } from "@/components/accounts/BillingAddress";
 import BillingCard from "@/components/accounts/BillingCard";
+import Notifications from "@/components/accounts/Notifications";
+import ProfileDetails from "@/components/accounts/ProfileDetails";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -14,6 +16,12 @@ const AccountPage = () => {
     <>
       <BillingCard />
       <BillingAddress />
+    </>
+  );
+  const settings = (
+    <>
+      <ProfileDetails />
+      <Notifications />
     </>
   );
   return (
@@ -35,6 +43,7 @@ const AccountPage = () => {
           );
         })}
       </div>
+      {selected === 1 && settings}
       {selected === 2 && billing}
     </main>
   );
