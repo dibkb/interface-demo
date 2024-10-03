@@ -1,6 +1,6 @@
 "use client";
 
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import { Area, AreaChart, XAxis } from "recharts";
 
 import {
   ChartConfig,
@@ -52,11 +52,10 @@ export function AreaChartStep() {
             right: 12,
           }}
         >
-          <CartesianGrid vertical={false} />
           <XAxis
             dataKey="month"
+            axisLine={{ stroke: "#E9E9E9", strokeWidth: 1 }}
             tickLine={false}
-            axisLine={false}
             tickMargin={8}
             tickFormatter={(value) => value.slice(0, 3)}
           />

@@ -38,7 +38,12 @@ export function BarchartHorizontal() {
       <ChartContainer config={chartConfig} className="mt-3">
         <BarChart accessibilityLayer data={chartData} layout="vertical">
           <CartesianGrid vertical={true} horizontal={false} />
-          <XAxis type="number" dataKey="amount" />
+          <XAxis
+            type="number"
+            dataKey="amount"
+            tickLine={false}
+            axisLine={false}
+          />
           <YAxis
             dataKey="platform"
             type="category"

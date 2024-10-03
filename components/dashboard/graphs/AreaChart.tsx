@@ -52,11 +52,11 @@ export function AreaChartLinear() {
             right: 12,
           }}
         >
-          <CartesianGrid vertical={false} />
+          <CartesianGrid horizontal={false} />
           <XAxis
             dataKey="month"
-            tickLine={false}
-            axisLine={false}
+            axisLine={{ stroke: "#E9E9E9", strokeWidth: 1 }}
+            tickLine={true}
             tickMargin={8}
             tickFormatter={(value) => value.slice(0, 3)}
           />

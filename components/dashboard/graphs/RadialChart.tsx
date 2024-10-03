@@ -1,24 +1,35 @@
 "use client";
 import React from "react";
 import ChartLayout from "./Layout";
-import { RadialBar, RadialBarChart } from "recharts";
+import { RadialBar, RadialBarChart, Tooltip } from "recharts";
 import {
   ChartConfig,
   ChartContainer,
-  ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import ArrowUp from "@/components/icons/ArrowUp";
 
+// Sample chart data
 const chartData = [
-  { platform: "flipkart", cases: 16038, fill: "#000000" },
-  { platform: "amazon", cases: 37817, fill: "#0A5823" },
+  { platform: "flipkart", cases: 36038, fill: "#000000" },
+  { platform: "amazon", cases: 7817, fill: "#0A5823" },
   { platform: "zepto", cases: 8382, fill: "#3EC76A" },
 ];
+
+// Total cases calculation
+const totalCount = chartData.reduce((acc, curr) => acc + curr.cases, 0);
+
+// Add a new field 'percentage' to the data
+const proportionalData = chartData.map((entry) => ({
+  ...entry,
+  percentage: (entry.cases / totalCount) * 100, // percentage for each platform
+}));
+
+// Chart configuration
 const chartConfig = {
   flipkart: {
     label: "flipkart",
-    color: "#000000",
+    color: "#303030",
   },
   amazon: {
     label: "amazon",
@@ -29,6 +40,7 @@ const chartConfig = {
     color: "#3EC76A",
   },
 } satisfies ChartConfig;
+
 const RadialChart = () => {
   return (
     <ChartLayout title="Cases Raised">
@@ -36,35 +48,34 @@ const RadialChart = () => {
         <div className="flex flex-col gap-4">
           <span className="font-bold flex flex-col gap-3">
             <p className="text-interface-neutrals-400">Total</p>
-            <h2 className="text-interface-base-black text-4xl">62,237</h2>
+            <h2 className="text-interface-base-black text-4xl">
+              {totalCount.toLocaleString()}
+            </h2>
             <span className="flex items-center gap-1 text-interface-primary-800">
-              {" "}
               <ArrowUp className="size-3" />
               32.1%
             </span>
           </span>
           <div className="flex flex-col gap-3 text-sm font-semibold text-interface-neutrals-500 mt-6">
-            {chartData.map((ele) => {
-              return (
-                <div
-                  key={ele.cases}
-                  className="flex items-center justify-between"
-                >
-                  <span className="flex items-center gap-2">
-                    <span
-                      className="rounded-md"
-                      style={{
-                        width: "8px",
-                        height: "16px",
-                        backgroundColor: ele.fill,
-                      }}
-                    ></span>
-                    <p className="capitalize">{ele.platform}</p>
-                  </span>
-                  <h3 className="text-interface-base-black">{ele.cases}</h3>
-                </div>
-              );
-            })}
+            {proportionalData.map((ele) => (
+              <div
+                key={ele.platform}
+                className="flex items-center justify-between max-w-52"
+              >
+                <span className="flex items-center gap-2">
+                  <span
+                    className="rounded-md"
+                    style={{
+                      width: "8px",
+                      height: "16px",
+                      backgroundColor: ele.fill,
+                    }}
+                  ></span>
+                  <p className="capitalize">{ele.platform}</p>
+                </span>
+                <h3 className="text-interface-base-black">{ele.cases}</h3>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -74,30 +85,22 @@ const RadialChart = () => {
             className="mx-auto aspect-square max-h-[350px]"
           >
             <RadialBarChart
-              data={chartData}
-              startAngle={90}
-              endAngle={-380}
               innerRadius={70}
               outerRadius={130}
+              startAngle={90}
+              endAngle={-270}
+              barSize={16}
+              data={proportionalData}
             >
-              <ChartTooltip
-                cursor={false}
-                content={
-                  <ChartTooltipContent
-                    hideLabel
-                    nameKey="cases"
-                    className="bg-white"
-                  />
-                }
+              <RadialBar
+                cornerRadius={16}
+                background={{ fill: "red" }}
+                dataKey="percentage" // Proportional fill
               />
-              <RadialBar dataKey="cases" background>
-                {/* <LabelList
-                position="insideStart"
-                dataKey="browser"
-                className="fill-white capitalize mix-blend-luminosity"
-                fontSize={11}
-              /> */}
-              </RadialBar>
+              <Tooltip
+                cursor={false}
+                content={<ChartTooltipContent className="bg-white" />}
+              />
             </RadialBarChart>
           </ChartContainer>
         </div>
