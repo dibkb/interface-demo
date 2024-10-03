@@ -29,12 +29,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function AreaChartLinear() {
+export function AreaChartStep() {
   return (
     <ChartLayout title="Monthly overview">
       <span className="font-bold flex flex-col gap-3 my-9">
-        <h2 className="text-interface-base-black text-4xl">₹62,237</h2>
-        <div className="flex items-center gap-3">
+        <h2 className="text-interface-base-black text-4xl">₹18,536</h2>
+        <div className="flex items-center gap-3 invisible">
           <span className="flex items-center gap-1 text-interface-primary-800 border border-interface-primary-800 bg-[#CBEDD6] w-min whitespace-nowrap px-2 rounded-xl">
             {" "}
             <ArrowUp className="size-3" />
@@ -72,7 +72,7 @@ export function AreaChartLinear() {
           </defs>
           <Area
             dataKey="desktop"
-            type="linear"
+            type="step"
             fill="url(#fillDesktop)"
             fillOpacity={0.4}
             stroke="#3EC76A"

@@ -2,6 +2,7 @@ import ButtonInfo from "@/components/dashboard/ButtonInfo";
 import { AreaChartLinear } from "@/components/dashboard/graphs/AreaChart";
 import { BarchartHorizontal } from "@/components/dashboard/graphs/BarchartHorizontal";
 import RadialChart from "@/components/dashboard/graphs/RadialChart";
+import { AreaChartStep } from "@/components/dashboard/graphs/StepChart";
 import React from "react";
 
 const DashboardPage = () => {
@@ -17,7 +18,7 @@ const DashboardPage = () => {
       </section>
       <section className="mt-4 flex justify-between gap-4">
         <AreaChartLinear />
-        <AreaChartLinear />
+        <AreaChartStep />
       </section>
     </div>
   );
