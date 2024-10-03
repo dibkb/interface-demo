@@ -1,4 +1,5 @@
 "use client";
+import { BillingAddress } from "@/components/accounts/BillingAddress";
 import BillingCard from "@/components/accounts/BillingCard";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -10,7 +11,7 @@ const tabs = [
 const AccountPage = () => {
   const [selected, setSelected] = useState<number>(1);
   return (
-    <main className="p-4 h-full flex flex-col gap-4 border">
+    <main className="p-4 h-full flex flex-col gap-6 border">
       <div className="flex gap-4">
         {tabs.map((ele) => {
           return (
@@ -29,6 +30,7 @@ const AccountPage = () => {
         })}
       </div>
       <BillingCard />
+      <BillingAddress />
     </main>
   );
 };
