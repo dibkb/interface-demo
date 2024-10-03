@@ -36,21 +36,14 @@ export function BarchartHorizontal() {
   return (
     <ChartLayout title="Reimbursements by Marketplace ">
       <ChartContainer config={chartConfig} className="mt-3">
-        <BarChart
-          accessibilityLayer
-          data={chartData}
-          layout="vertical"
-          margin={{
-            left: -20,
-          }}
-        >
+        <BarChart accessibilityLayer data={chartData} layout="vertical">
           <CartesianGrid vertical={true} horizontal={false} />
           <XAxis type="number" dataKey="amount" />
           <YAxis
             dataKey="platform"
             type="category"
+            tick={false} // Removed Y tick labels
             tickLine={false}
-            tickMargin={100}
             axisLine={false}
           />
           <ChartTooltip
