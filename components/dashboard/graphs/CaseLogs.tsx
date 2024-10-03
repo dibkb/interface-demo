@@ -39,7 +39,7 @@ const CaseLogs = () => {
       </span>
       <DashChart
         data={[
-          { title: "Reimbursed Cases", count: 1942, color: "#3EC76A" },
+          { title: "Reimbursed Cases", count: 942, color: "#3EC76A" },
           { title: "Pending Case", count: 532, color: "#1E1E1E" },
           { title: "Action Required", count: 280, color: "#E4626F" },
         ]}
