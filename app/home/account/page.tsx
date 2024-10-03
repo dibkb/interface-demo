@@ -10,6 +10,12 @@ const tabs = [
 ];
 const AccountPage = () => {
   const [selected, setSelected] = useState<number>(1);
+  const billing = (
+    <>
+      <BillingCard />
+      <BillingAddress />
+    </>
+  );
   return (
     <main className="p-4 h-full flex flex-col gap-6 border">
       <div className="flex gap-4">
@@ -29,8 +35,7 @@ const AccountPage = () => {
           );
         })}
       </div>
-      <BillingCard />
-      <BillingAddress />
+      {selected === 2 && billing}
     </main>
   );
 };
