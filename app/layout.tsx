@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { manrope } from "@/components/fonts";
+import { manropeLocal } from "@/components/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.className} antialiased`}>{children}</body>
+      <body className={`${manropeLocal.className} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
