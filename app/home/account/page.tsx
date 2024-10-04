@@ -25,7 +25,7 @@ const AccountPage = () => {
     </>
   );
   return (
-    <main className="p-4 h-full flex flex-col gap-6 border">
+    <main className="p-4 h-full flex flex-col gap-6 border overflow-y-auto">
       <div className="flex gap-4">
         {tabs.map((ele) => {
           return (
