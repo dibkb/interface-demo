@@ -7,9 +7,17 @@ import Logout from "../icons/Logout";
 const SidebarbottomMenu = () => {
   return (
     <div className="flex-grow flex flex-col justify-end gap-2 p-6">
-      <MarketplaceButton text={"My account"} icon={<Profile />} />
-      <MarketplaceButton text={"Notifications"} icon={<Bell />} />
-      <MarketplaceButton text={"Logout"} icon={<Logout />} />
+      <MarketplaceButton
+        text={"My account"}
+        icon={<Profile />}
+        href="/home/account"
+      />
+      <MarketplaceButton
+        text={"Notifications"}
+        icon={<Bell />}
+        href="/home/notifications"
+      />
+      <MarketplaceButton text={"Logout"} icon={<Logout />} href="/logout" />
     </div>
   );
 };
