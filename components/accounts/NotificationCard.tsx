@@ -8,8 +8,9 @@ import { ChevronRight } from "lucide-react";
 interface NotificationCardProps {
   title: string;
   type: "reimbursed" | "raised" | "action" | "billing";
+  onClick: () => void;
 }
-const NotificationCard = ({ title, type }: NotificationCardProps) => {
+const NotificationCard = ({ title, type, onClick }: NotificationCardProps) => {
   let icon;
   switch (type) {
     case "reimbursed":
@@ -26,7 +27,10 @@ const NotificationCard = ({ title, type }: NotificationCardProps) => {
       break;
   }
   return (
-    <div className="flex items-center justify-between p-4 bg-interface-neutrals-50 border rounded-md cursor-pointer hover:bg-interface-neutrals-100">
+    <div
+      onClick={onClick}
+      className="flex items-center justify-between p-4 bg-interface-neutrals-50 border rounded-md cursor-pointer hover:bg-interface-neutrals-100"
+    >
       <main className="flex items-center gap-6">
         {icon}
         <span>
