@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import CardLayout from "./CardLayout";
 import ExclamationCircle from "../icons/ExclamationCircle";
+import Checkbox from "./Checkbox";
 
 const Deactivation = () => {
   const button = (
@@ -8,9 +9,10 @@ const Deactivation = () => {
       Deactivate Account
     </button>
   );
+  const [confirm, setConfirm] = useState(false);
   return (
     <CardLayout text="Account Deactivation" asideNode={button}>
-      <main>
+      <main className="flex flex-col gap-4">
         <div className="p-4 rounded-lg bg-interface-neutrals-100/50 border flex gap-4 items-center">
           <ExclamationCircle className="size-12" />
           <div className="flex flex-col gap-3">
@@ -22,6 +24,15 @@ const Deactivation = () => {
               phone number.
             </p>
           </div>
+        </div>
+        <div
+          className="flex gap-4 cursor-pointer select-none"
+          onClick={() => setConfirm((p) => !p)}
+        >
+          <Checkbox selected={confirm} />
+          <p className="font-bold text-interface-base-black">
+            I confirm my account deactivation
+          </p>
         </div>
       </main>
     </CardLayout>
