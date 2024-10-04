@@ -15,9 +15,9 @@ const Expand = (props: SVGProps) => {
         <path
           d="M10.0525 17.6054H5.44727V13.0002M13.7367 4.71069H18.342V9.31596"
           stroke="#888888"
-          stroke-width="1.38158"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.38158"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>

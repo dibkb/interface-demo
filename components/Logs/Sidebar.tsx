@@ -10,10 +10,12 @@ import Swiggy from "../icons/Swiggy";
 import Zepto from "../icons/Zepto";
 import Plus from "../icons/Plus";
 import { usePathname } from "next/navigation";
+import { extractActivepath } from "@/utils/extract-active";
 
 const Sidebar = () => {
   const pathname = usePathname();
-  console.log(pathname.split("/").pop());
+  const active = extractActivepath(pathname);
+  console.log(active);
   return (
     <div className="flex flex-col gap-2 p-6 border-b">
       <div className="flex flex-col gap-4">
