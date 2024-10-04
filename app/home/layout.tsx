@@ -1,3 +1,4 @@
+"use client";
 import { inter } from "@/components/fonts";
 import Heading from "@/components/fonts/heading";
 import { Logo } from "@/components/fonts/logo";
@@ -6,12 +7,37 @@ import { LogsSelect } from "@/components/Logs/LogsSelect";
 import Sidebar from "@/components/Logs/Sidebar";
 import SidebarbottomMenu from "@/components/Logs/SidebarbottomMenu";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { extractActivepath } from "@/utils/extract-active";
 
 export default function DashboardLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const activeTab = extractActivepath(pathname);
+  const path = pathname.split("/").pop();
+  let navPreview;
+  if (activeTab === "dashboard") {
+    navPreview = <Heading text="Overview" />;
+  } else if (activeTab === "amazon") {
+    if (path === "dashboard") {
+      navPreview = (
+        <>
+          <Heading text="Amazon" />
+          <LogsSelect />
+        </>
+      );
+    } else {
+      navPreview = (
+        <>
+          <Heading text="Logs" />
+          <LogsSelect />
+        </>
+      );
+    }
+  }
   return (
     <div className="fixed inset-0 flex">
       <aside className="w-1/6 flex flex-col h-full">
@@ -26,10 +52,7 @@ export default function DashboardLayout({
 
       <main className="w-5/6 flex flex-col overflow-x-auto">
         <div className="h-[4.25rem] border-t border-b py-5 px-8 flex items-center justify-between">
-          <span className="flex items-center gap-2">
-            <Heading text="Logs" />
-            <LogsSelect />
-          </span>
+          <span className="flex items-center gap-2">{navPreview}</span>
           <div className="flex items-center gap-4">
             <button className="border p-1 rounded-md">
               <Filter />
