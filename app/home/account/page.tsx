@@ -1,6 +1,7 @@
 "use client";
 import { BillingAddress } from "@/components/accounts/BillingAddress";
 import BillingCard from "@/components/accounts/BillingCard";
+import Deactivation from "@/components/accounts/Deactivation";
 import Notifications from "@/components/accounts/Notifications";
 import ProfileDetails from "@/components/accounts/ProfileDetails";
 import { cn } from "@/lib/utils";
@@ -22,6 +23,7 @@ const AccountPage = () => {
     <>
       <ProfileDetails />
       <Notifications />
+      <Deactivation />
     </>
   );
   return (

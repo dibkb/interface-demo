@@ -43,12 +43,12 @@ export const DropdownInput = ({
             )}
           >
             <p>{state}</p>
-            <button
+            <span
               className={cn("invisible", (isHovered || editOpen) && "visible")}
               onClick={() => setEditOpen((t) => !t)}
             >
               <ChevronDown />
-            </button>
+            </span>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             {list.map((l) => (
