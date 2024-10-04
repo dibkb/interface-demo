@@ -9,10 +9,10 @@ import {
   TableRow,
 } from "../ui/table";
 import { cn } from "@/lib/utils";
-import { Check, ChevronUp, ChevronDown, Pause } from "lucide-react";
-import ArrowClockwise from "../icons/ArrowClockwise";
-import Xicon from "../icons/Xicon";
+import { Check, ChevronUp, ChevronDown } from "lucide-react";
 import CaseRaisedSidemenu from "./Sidemenu/CaseRaisedSidemenu";
+import ArrowLineUpRight from "../icons/ArrowLineUpRight";
+import Link from "next/link";
 const invoices = [
   {
     time: "2024-09-21T23:11:09",
@@ -150,26 +150,19 @@ const CaseRaised = () => {
             ) : (
               ""
             )}
-            <button
+            <Link
+              href={`/home/detailed/${selected}`}
               onClick={() => setSelected(undefined)}
               className="p-1 rounded-md text-interface-neutrals-600 hover:bg-interface-neutrals-50"
             >
-              <Xicon />
-            </button>
+              <ArrowLineUpRight />
+            </Link>
           </main>
           <div className="border-t w-full flex-1 p-4 text-xs font-semibold">
             <main className="flex flex-col gap-3">
               <CaseRaisedSidemenu />
             </main>
           </div>
-          <footer className="flex items-center justify-between p-4">
-            <button className="p-1 hover:bg-interface-neutrals-50">
-              <ArrowClockwise />
-            </button>
-            <button className="p-1 hover:bg-interface-neutrals-50">
-              <Pause />
-            </button>
-          </footer>
         </div>
       )}
     </main>

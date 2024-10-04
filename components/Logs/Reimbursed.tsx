@@ -14,6 +14,8 @@ import ArrowClockwise from "../icons/ArrowClockwise";
 import Xicon from "../icons/Xicon";
 import ReimbursedSidemenu from "./Sidemenu/ReimbursedSidemenu";
 import ReimbursedLabel from "./Sidemenu/ReimbursedItems/ReimbursedLabel";
+import ArrowLineUpRight from "../icons/ArrowLineUpRight";
+import Link from "next/link";
 const invoices = [
   {
     caseId: "10175687215",
@@ -154,24 +156,17 @@ const Reimbursed = () => {
             ) : (
               ""
             )}
-            <button
+            <Link
+              href={`/home/detailed/${selected}`}
               onClick={() => setSelected(undefined)}
               className="p-1 rounded-md text-interface-neutrals-600 hover:bg-interface-neutrals-50"
             >
-              <Xicon />
-            </button>
+              <ArrowLineUpRight />
+            </Link>
           </main>
           <div className="border-t w-full flex-1 p-4 text-xs font-semibold">
             <ReimbursedSidemenu />
           </div>
-          <footer className="flex items-center justify-between p-4">
-            <button className="p-1 hover:bg-interface-neutrals-50">
-              <ArrowClockwise />
-            </button>
-            <button className="p-1 hover:bg-interface-neutrals-50">
-              <Pause />
-            </button>
-          </footer>
         </div>
       )}
     </main>
