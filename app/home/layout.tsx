@@ -3,12 +3,18 @@ import { inter } from "@/components/fonts";
 import Heading from "@/components/fonts/heading";
 import { Logo } from "@/components/fonts/logo";
 import Filter from "@/components/icons/Filter";
-import { LogsSelect } from "@/components/Logs/LogsSelect";
+import { SelectMenu } from "@/components/Logs/LogsSelect";
 import Sidebar from "@/components/Logs/Sidebar";
 import SidebarbottomMenu from "@/components/Logs/SidebarbottomMenu";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { extractActivepath } from "@/utils/extract-active";
+import { logMessagesDisplay } from "@/constants/log-messages";
+import { logMessages } from "@/constants/log-messages";
+import {
+  dashboardMessages,
+  dashboardMessagesDisplay,
+} from "@/constants/dashboard-messages";
 
 export default function DashboardLayout({
   children, // will be a page or nested layout
@@ -26,14 +32,22 @@ export default function DashboardLayout({
       navPreview = (
         <>
           <Heading text="Amazon" />
-          <LogsSelect />
+          <SelectMenu
+            hrefPrefix="/home/amazon/dashboard"
+            logMessages={dashboardMessages}
+            logMessagesDisplay={dashboardMessagesDisplay}
+          />
         </>
       );
     } else {
       navPreview = (
         <>
           <Heading text="Logs" />
-          <LogsSelect />
+          <SelectMenu
+            hrefPrefix={"/home/amazon/logs"}
+            logMessages={logMessages}
+            logMessagesDisplay={logMessagesDisplay}
+          />
         </>
       );
     }
