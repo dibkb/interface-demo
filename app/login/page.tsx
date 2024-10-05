@@ -2,11 +2,48 @@
 import { Logo } from "@/components/fonts/logo";
 import { Google } from "@/components/icons/Google";
 import Input from "@/components/login/Input";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Login failed");
+      }
+
+      const data = await response.json();
+
+      // Store the access token in an HTTP-only cookie
+      Cookies.set("accessToken", data.access_token, {
+        secure: true,
+        sameSite: "strict",
+        expires: 7,
+      });
+
+      // Optionally store user info
+      localStorage.setItem("user", JSON.stringify({ username }));
+
+      // Redirect to dashboard or home page
+      router.push("/home/dashboard");
+    } catch (err) {
+      console.error("Login error:", err);
+    }
+  };
   return (
     <main className="grid grid-cols-10 h-[100vh]">
       <main className="col-span-4 bg-interface-palette-secondary flex items-center justify-center">
@@ -24,9 +61,9 @@ function LoginPage() {
           <Logo className="text-5xl my-8" />
           <main className="w-full flex flex-col gap-6">
             <Input
-              state={email}
-              setState={setEmail}
-              placeholder={"Email Address"}
+              state={username}
+              setState={setUsername}
+              placeholder={"Username"}
             />
             <Input
               state={password}
@@ -34,7 +71,10 @@ function LoginPage() {
               type={"password"}
               placeholder={"Password"}
             />
-            <button className="text-sm font-semibold bg-interface-base-black text-interface-base-white rounded-lg py-4">
+            <button
+              onClick={handleSubmit}
+              className="text-sm font-semibold bg-interface-base-black text-interface-base-white rounded-lg py-4"
+            >
               Login
             </button>
             <div className="flex items-center w-full">

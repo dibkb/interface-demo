@@ -9,9 +9,7 @@ import {
   TableRow,
 } from "../ui/table";
 import { cn } from "@/lib/utils";
-import { Check, ChevronUp, ChevronDown, Pause } from "lucide-react";
-import ArrowClockwise from "../icons/ArrowClockwise";
-import Xicon from "../icons/Xicon";
+import { Check, ChevronUp, ChevronDown } from "lucide-react";
 import ReimbursedSidemenu from "./Sidemenu/ReimbursedSidemenu";
 import ReimbursedLabel from "./Sidemenu/ReimbursedItems/ReimbursedLabel";
 import ArrowLineUpRight from "../icons/ArrowLineUpRight";
