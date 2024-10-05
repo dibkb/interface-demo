@@ -15,8 +15,9 @@ import {
   dashboardMessages,
   dashboardMessagesDisplay,
 } from "@/constants/dashboard-messages";
+import withAuth from "@/utils/withAuth";
 
-export default function DashboardLayout({
+function DashboardLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
@@ -88,3 +89,5 @@ export default function DashboardLayout({
     </div>
   );
 }
+
+export default withAuth(DashboardLayout);
