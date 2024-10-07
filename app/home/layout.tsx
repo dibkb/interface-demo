@@ -15,7 +15,7 @@ import {
   dashboardMessages,
   dashboardMessagesDisplay,
 } from "@/constants/dashboard-messages";
-import withAuth from "@/utils/withAuth";
+import withAuth from "@/utils/WithAuth";
 
 function DashboardLayout({
   children, // will be a page or nested layout

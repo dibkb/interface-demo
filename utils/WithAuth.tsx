@@ -1,28 +1,33 @@
 "use client";
+
 import { useEffect, ComponentType, useState } from "react";
 import Cookies from "js-cookie";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const WrappedComponentWithAuth = <P extends object>(
   WrappedComponent: ComponentType<P>
 ) => {
   const WithAuth: React.FC<P> = (props) => {
     const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
 
     useEffect(() => {
-      const checkAuth = async () => {
+      const checkAuth = () => {
         const token =
-          localStorage.getItem("accessToken") || Cookies.get("accessToken");
+          typeof window !== "undefined"
+            ? localStorage.getItem("accessToken") || Cookies.get("accessToken")
+            : null;
 
         if (!token) {
-          redirect("/login");
+          router.push("/login");
         } else {
           setIsLoading(false);
         }
       };
 
       checkAuth();
-    }, []);
+    }, [router]);
+
     if (isLoading) {
       return <div>Loading...</div>;
     } else {
