@@ -10,6 +10,13 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const handleGoogleLogin = async () => {
+    try {
+      window.location.href = "http://localhost:8000/auth/google";
+    } catch (err) {
+      console.error("Google login error:", err);
+    }
+  };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -84,7 +91,10 @@ function LoginPage() {
               </span>
               <div className="flex-grow border-t border-interface-base-black"></div>
             </div>
-            <button className="text-sm font-semibold border-2 border-interface-base-black text-interface-base-black bg-interface-base-white rounded-lg py-4 flex items-center gap-3 justify-center">
+            <button
+              onClick={handleGoogleLogin}
+              className="text-sm font-semibold border-2 border-interface-base-black text-interface-base-black bg-interface-base-white rounded-lg py-4 flex items-center gap-3 justify-center"
+            >
               <Google />
               Login with Google
             </button>
