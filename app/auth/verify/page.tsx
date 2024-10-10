@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 
@@ -28,4 +28,10 @@ const VerifyAuth = () => {
   return <div>Verifying your authentication...</div>;
 };
 
-export default VerifyAuth;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerifyAuth />
+    </Suspense>
+  );
+}
