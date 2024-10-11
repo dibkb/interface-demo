@@ -5,6 +5,7 @@ import Input from "@/components/login/Input";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Cookies from "js-cookie";
+import { BACKEND_URL } from "@/config";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -12,7 +13,7 @@ function LoginPage() {
   const router = useRouter();
   const handleGoogleLogin = async () => {
     try {
-      window.location.href = "http://localhost:8000/auth/google";
+      window.location.href = `${BACKEND_URL}/auth/google`;
     } catch (err) {
       console.error("Google login error:", err);
     }
@@ -21,7 +22,7 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/auth/login", {
+      const response = await fetch(`${BACKEND_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

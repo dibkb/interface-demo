@@ -1,8 +1,32 @@
+"use client";
 import ButtonInfo from "@/components/dashboard/ButtonInfo";
 import CaseLogs from "@/components/dashboard/graphs/CaseLogs";
 import { ReimbursementsFull } from "@/components/dashboard/graphs/ReimbursementsFull";
+import { useCallback, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 function AmazonDashboard() {
+  const APP_ID = "amzn1.sp.solution.ecc21900-8432-423e-ad05-096f2b3c43d0";
+  const [hasOpened, setHasOpened] = useState(false);
+  const getAuthUrl = (appId: string, token: string) =>
+    `https://sellercentral.amazon.com/apps/authorize/consent?application_id=${appId}&version=beta&state=${token}`;
+
+  const openAuthWindow = useCallback(() => {
+    const access_token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken") || Cookies.get("accessToken")
+        : null;
+
+    if (!hasOpened && access_token) {
+      const authUrl = getAuthUrl(APP_ID, access_token);
+      window.open(authUrl, "_blank");
+      setHasOpened(true);
+    }
+  }, [hasOpened]);
+
+  useEffect(() => {
+    openAuthWindow();
+  }, [openAuthWindow]);
   return (
     <main className="border rounded-md p-4 h-full overflow-scroll">
       <div className="flex justify-between gap-4">
