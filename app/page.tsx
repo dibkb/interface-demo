@@ -1,6 +1,5 @@
-import React from "react";
-
+import { redirect } from "next/navigation";
 const Homepage = () => {
-  return <div>page</div>;
+  redirect("/login");
 };
 export default Homepage;
