@@ -29,9 +29,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function AreaChartLinear() {
+interface AreaChartLinearProps {
+  className?: string;
+}
+export function AreaChartLinear({ className }: AreaChartLinearProps) {
   return (
-    <ChartLayout title="Monthly overview">
+    <ChartLayout title="Monthly overview" className={className}>
       <span className="font-bold flex flex-col gap-3 my-9">
         <h2 className="text-interface-base-black text-4xl">₹62,237</h2>
         <div className="flex items-center gap-3">

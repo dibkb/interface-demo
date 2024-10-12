@@ -32,9 +32,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function BarchartHorizontal() {
+interface BarchartHorizontalProps {
+  className?: string;
+}
+export function BarchartHorizontal({ className }: BarchartHorizontalProps) {
   return (
-    <ChartLayout title="Reimbursements by Marketplace ">
+    <ChartLayout title="Reimbursements by Marketplace" className={className}>
       <ChartContainer config={chartConfig} className="mt-3">
         <BarChart accessibilityLayer data={chartData} layout="vertical">
           <CartesianGrid vertical={true} horizontal={false} />

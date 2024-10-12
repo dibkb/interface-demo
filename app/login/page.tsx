@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { BACKEND_URL } from "@/config";
+import useAuthStore from "../src/stores/authStore";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -18,6 +19,7 @@ function LoginPage() {
       console.error("Google login error:", err);
     }
   };
+  const { setJwtAccessToken } = useAuthStore();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -42,9 +44,8 @@ function LoginPage() {
         sameSite: "strict",
         expires: 7,
       });
-
-      // Optionally store user info
-      localStorage.setItem("user", JSON.stringify({ username }));
+      // Store in zustand store
+      setJwtAccessToken(data.access_token);
 
       // Redirect to dashboard or home page
       router.push("/home/dashboard");

@@ -29,9 +29,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function AreaChartStep() {
+interface AreaChartStepProps {
+  className?: string;
+}
+export function AreaChartStep({ className }: AreaChartStepProps) {
   return (
-    <ChartLayout title="Monthly overview">
+    <ChartLayout title="Monthly overview" className={className}>
       <span className="font-bold flex flex-col gap-3 my-9">
         <h2 className="text-interface-base-black text-4xl">₹18,536</h2>
         <div className="flex items-center gap-3 invisible">

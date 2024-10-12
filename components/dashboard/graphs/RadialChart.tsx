@@ -40,10 +40,12 @@ const chartConfig = {
     color: "#3EC76A",
   },
 } satisfies ChartConfig;
-
-const RadialChart = () => {
+interface RadialChartProps {
+  className?: string;
+}
+const RadialChart = ({ className }: RadialChartProps) => {
   return (
-    <ChartLayout title="Cases Raised">
+    <ChartLayout title="Cases Raised" className={className}>
       <div className="grid grid-cols-2">
         <div className="flex flex-col gap-4">
           <span className="font-bold flex flex-col gap-3">
