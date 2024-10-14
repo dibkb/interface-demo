@@ -1,12 +1,21 @@
 "use client";
+import useAuthStore from "@/app/src/stores/authStore";
+import authotrizedApi from "@/axios/authorizedRoute";
 import ArrowUpRight from "@/components/icons/ArrowUpRight";
 import Loglabel from "@/components/Logs/Loglabel";
 import LogThumbnail from "@/components/Logs/LogThumbnail";
 import { logMessages } from "@/constants/log-messages";
 import { label } from "@/types/logLabel";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const Homepage = () => {
+  const { jwtAccessToken } = useAuthStore();
+  useEffect(() => {
+    authotrizedApi
+      .get("/amazon/removal-order-recon")
+      .then((response) => console.log(response.data));
+  }, [jwtAccessToken]);
   return (
     <div className="border h-full overflow-x-auto flex">
       {Object.entries(logMessages).map(([_key, val]) => {
