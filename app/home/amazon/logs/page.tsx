@@ -5,17 +5,20 @@ import ArrowUpRight from "@/components/icons/ArrowUpRight";
 import Loglabel from "@/components/Logs/Loglabel";
 import LogThumbnail from "@/components/Logs/LogThumbnail";
 import { logMessages } from "@/constants/log-messages";
+import { RemovalOrder } from "@/types/amazon/removal-order-recon";
 import { label } from "@/types/logLabel";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Homepage = () => {
   const { jwtAccessToken } = useAuthStore();
+  const [removalOrders, setRemovalOrders] = useState<RemovalOrder[]>();
   useEffect(() => {
     authotrizedApi
       .get("/amazon/removal-order-recon")
-      .then((response) => console.log(response.data));
+      .then((response) => setRemovalOrders(response.data.data));
   }, [jwtAccessToken]);
+  console.log(removalOrders);
   return (
     <div className="border h-full overflow-x-auto flex">
       {Object.entries(logMessages).map(([_key, val]) => {
@@ -33,34 +36,17 @@ const Homepage = () => {
               <ArrowUpRight className="size-5 text-interface-neutrals-600 invisible group-hover:visible" />
             </Link>
             <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
-              {key === "all" && (
-                <>
-                  <LogThumbnail
-                    title={"Overcharge : Shipping"}
-                    content={"B0CLMN3PQ7"}
-                  />
-                  <LogThumbnail
-                    title={"Overcharge : Shipping"}
-                    content={"B0CLMN3PQ7"}
-                  />
-                  <LogThumbnail
-                    title={"Overcharge : Shipping"}
-                    content={"B0CLMN3PQ7"}
-                  />
-                </>
-              )}
-              {key === "reimbursed" && (
-                <>
-                  <LogThumbnail
-                    title={"Overcharge : Shipping"}
-                    content={"B0CLMN3PQ7"}
-                  />
-                  <LogThumbnail
-                    title={"Overcharge : Shipping"}
-                    content={"B0CLMN3PQ7"}
-                  />
-                </>
-              )}
+              {removalOrders?.map((ele) => {
+                if (ele.status.toLowerCase() === key) {
+                  return (
+                    <LogThumbnail
+                      key={ele.id}
+                      title={ele.order_disposition}
+                      content={ele.order_id}
+                    />
+                  );
+                }
+              })}
             </div>
           </div>
         );

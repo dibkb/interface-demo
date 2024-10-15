@@ -1,1 +1,8 @@
-export type label = "all" | "raised" | "followed" | "reimbursed" | "action";
+export type label =
+  | "all"
+  | "raised"
+  | "followed"
+  //   | "reimbursed"
+  | "reconciled"
+  //   | "action"
+  | "discrepancy";

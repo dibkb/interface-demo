@@ -24,16 +24,16 @@ const Loglabel = ({ type }: LoglabelProps) => {
           Case Raised
         </span>
       );
-    case "reimbursed":
+    case "reconciled":
       return (
         <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#14A341] border border-[#14A341] bg-[#CBEDD6]">
-          Reimbursed
+          Reconciled
         </span>
       );
-    case "action":
+    case "discrepancy":
       return (
         <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#CC0F0F] border border-[#CC0F0F] bg-[#FBCFCF]">
-          Action Required
+          Discrepancy
         </span>
       );
   }
