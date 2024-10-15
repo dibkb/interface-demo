@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -9,10 +9,11 @@ import {
   TableRow,
 } from "../ui/table";
 import { cn } from "@/lib/utils";
-import { Check, ChevronUp, ChevronDown, Link } from "lucide-react";
+import { Check, ChevronUp, ChevronDown } from "lucide-react";
 import ArrowLineUpRight from "../icons/ArrowLineUpRight";
 import CaseRaisedSidemenu from "./Sidemenu/CaseRaisedSidemenu";
 import useReportStore from "@/app/src/stores/reportStore";
+import Link from "next/link";
 
 const Discrepancy = () => {
   const { removalOrders } = useReportStore();
