@@ -27,7 +27,6 @@ export function SelectMenu({
   const pathname = usePathname();
   useEffect(() => {
     const val = pathname.split("/").pop();
-    console.log(pathname.split("/"));
     if (initialLogMessage && val && val !== "logs") {
       const hyphen = val.split("-");
       if (hyphen.length > 1) {

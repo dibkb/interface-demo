@@ -2,8 +2,7 @@
 
 import AllCases from "@/components/Logs/AllCases";
 import CaseRaised from "@/components/Logs/CaseRaised";
-import Reimbursed from "@/components/Logs/Reimbursed";
-import { label } from "@/types/logLabel";
+import Discrepancy from "@/components/Logs/Discrepancy";
 
 export default function Page({ params }: { params: { type: string } }) {
   switch (params.type) {
@@ -14,6 +13,6 @@ export default function Page({ params }: { params: { type: string } }) {
     case "reconciled":
     // return <Reimbursed />;
     case "discrepancy":
-    // return <Reimbursed />;
+      return <Discrepancy />;
   }
 }

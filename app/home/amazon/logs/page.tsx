@@ -19,7 +19,6 @@ const Homepage = () => {
       .get("/amazon/removal-order-recon")
       .then((response) => setRemovalOrder(response.data.data));
   }, [jwtAccessToken]);
-  console.log(removalOrders);
   return (
     <div className="border h-full overflow-x-auto flex">
       {Object.entries(logMessages).map(([_key, val]) => {

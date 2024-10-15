@@ -12,13 +12,28 @@ import { cn } from "@/lib/utils";
 import { Check, ChevronUp, ChevronDown, Link } from "lucide-react";
 import ArrowLineUpRight from "../icons/ArrowLineUpRight";
 import CaseRaisedSidemenu from "./Sidemenu/CaseRaisedSidemenu";
-import { RemovalOrder } from "@/types/amazon/removal-order-recon";
+import useReportStore from "@/app/src/stores/reportStore";
 
 const Discrepancy = () => {
-  const;
-  const [invoices, setInvoices] = useState<RemovalOrder[]>();
+  const { removalOrders } = useReportStore();
   const [selected, setSelected] = useState<string | undefined>();
-  useEffect(() => {}, []);
+  const incrementSelection = () => {
+    const index = removalOrders.findIndex((ele) => ele.order_id === selected);
+    if (index === removalOrders.length - 1) {
+      setSelected(removalOrders[0].order_id);
+    } else {
+      setSelected(removalOrders[index + 1].order_id);
+    }
+  };
+  const decrementSelection = () => {
+    const index = removalOrders.findIndex((ele) => ele.order_id === selected);
+    if (index === 0) {
+      setSelected(removalOrders[removalOrders.length - 1].order_id);
+    } else {
+      setSelected(removalOrders[index - 1].order_id);
+    }
+  };
+  // TODO : filter only the discrepancies
   return (
     <main className="flex border w-full h-full">
       <div
@@ -42,41 +57,45 @@ const Discrepancy = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {invoices.map((data) => (
+            {removalOrders.map((data) => (
               <TableRow
-                key={data.time}
+                key={data.id}
                 className={cn(
                   "font-semibold text-[#1F2937] hover:bg-interface-neutrals-200",
-                  data.asin === selected && "bg-interface-neutrals-200"
+                  data.order_id === selected && "bg-interface-neutrals-200"
                 )}
               >
                 <TableCell
                   className="w-1/12 py-4"
                   onClick={() =>
                     setSelected((prev) => {
-                      if (prev === data.asin) return undefined;
-                      else return data.asin;
+                      if (prev === data.order_id) return undefined;
+                      else return data.order_id;
                     })
                   }
                 >
                   <div
                     className={cn(
                       "w-4 h-4 border rounded-sm flex items-center justify-center bg-transparent",
-                      selected === data.asin &&
+                      selected === data.order_id &&
                         " bg-interface-base-black border-interface-base-black"
                     )}
                   >
                     <Check
                       className={cn(
                         "invisible",
-                        selected === data.asin && "text-white visible"
+                        selected === data.order_id && "text-white visible"
                       )}
                     />
                   </div>
                 </TableCell>
-                <TableCell className="w-3/12 py-4">{data.time}</TableCell>
-                <TableCell className="w-3/12 py-4">{data.asin}</TableCell>
-                <TableCell className="w-5/12 py-4">{data.dispute}</TableCell>
+                <TableCell className="w-3/12 py-4">
+                  {data.order_request_date}
+                </TableCell>
+                <TableCell className="w-3/12 py-4">{data.order_id}</TableCell>
+                <TableCell className="w-5/12 py-4">
+                  {data.order_disposition}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
