@@ -1,5 +1,6 @@
 "use client";
 import useAuthStore from "@/app/src/stores/authStore";
+import useReportStore from "@/app/src/stores/reportStore";
 import authotrizedApi from "@/axios/authorizedRoute";
 import ArrowUpRight from "@/components/icons/ArrowUpRight";
 import Loglabel from "@/components/Logs/Loglabel";
@@ -12,11 +13,11 @@ import { useEffect, useState } from "react";
 
 const Homepage = () => {
   const { jwtAccessToken } = useAuthStore();
-  const [removalOrders, setRemovalOrders] = useState<RemovalOrder[]>();
+  const { setRemovalOrder, removalOrders } = useReportStore();
   useEffect(() => {
     authotrizedApi
       .get("/amazon/removal-order-recon")
-      .then((response) => setRemovalOrders(response.data.data));
+      .then((response) => setRemovalOrder(response.data.data));
   }, [jwtAccessToken]);
   console.log(removalOrders);
   return (
