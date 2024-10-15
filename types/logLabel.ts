@@ -1,6 +1,6 @@
 export type label =
   | "all"
-  | "raised"
+  | "case"
   | "followed"
   //   | "reimbursed"
   | "reconciled"

@@ -48,6 +48,7 @@ function DashboardLayout({
             hrefPrefix={"/home/amazon/logs"}
             logMessages={logMessages}
             logMessagesDisplay={logMessagesDisplay}
+            initialLogMessage={true}
           />
         </>
       );

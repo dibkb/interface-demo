@@ -18,7 +18,7 @@ const Loglabel = ({ type }: LoglabelProps) => {
           Followed Up
         </span>
       );
-    case "raised":
+    case "case":
       return (
         <span className="text-sm font-semibold px-4 py-1 rounded-md text-[#CCA60F] border border-[#CCA60F] bg-[#FBF6CF]">
           Case Raised

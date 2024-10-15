@@ -2,16 +2,16 @@ import { label } from "@/types/logLabel";
 
 export const logMessages: Record<label, string> = {
   all: "all-mismatches",
-  raised: "case-raised",
+  case: "case-raised",
   followed: "followed-up",
   // reimbursed: "reimbursed",
-  reconciled: "Reconciled",
+  reconciled: "reconciled",
   // action: "action-required",
-  discrepancy: "Discrepancy",
+  discrepancy: "discrepancy",
 };
 export const logMessagesDisplay: Record<label, string> = {
   all: "All Mismatches",
-  raised: "Case Raised",
+  case: "Case Raised",
   followed: "Followed Up",
   // reimbursed: "Reimbursed",
   reconciled: "Reconciled",
