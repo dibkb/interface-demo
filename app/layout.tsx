@@ -5,7 +5,7 @@ import { manropeLocal } from "@/components/fonts";
 
 export const metadata: Metadata = {
   title: "Get Interface",
-  description: "",
+  description: "Get Interface",
 };
 
 export default function RootLayout({
